@@ -41,13 +41,17 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menu_move_parent:
                 startActivity(new Intent(this, Parent.class));
-                break;
+                return true;
             case R.id.menu_move_child:
                 startActivity(new Intent(this, Child.class));
-                break;
-                //break 를 걸어주지 않으면 메뉴 클릭시 다음 메소드들도 다 실행되어 버림.
+                return true;
+                //return true 로 이벤트 소비.
+            //break 와 return 의 차이는
+            //break는 swich를 빠져나오고 다음 메소드도 실행해줌
+            //return은 이 메소드 자체를 종료한다는 느낌
         }
-        //리턴값 트루
-        return true;
+        //리턴을 부모객체에 넘기면 대부분 false
+        //아무것도 처리하지 않았을때.
+        return super.onOptionsItemSelected(item);
     }
 }
